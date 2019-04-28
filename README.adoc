@@ -1,0 +1,40 @@
+= {Title}
+:title:     Snapcraft Build Container for Docker
+:author:    Urs Roesch
+:firstname: Urs
+:lastname:  Roesch
+:email:     github@bun.ch
+:revnumber: 0.1.0
+:keywords:  snap, snapcraft, docker, container, build
+:toc:       left
+:icons:     font
+
+This is a `Dockerfile` and a wrapper script called `snapcraft-docker` which
+helped me build my https://github.com/uroesch/snap-asciidoctor[first snap].
+
+NOTE: The code and instructions are provided as is.
+
+[[docker-build]]
+== Docker Build
+[source,bash]
+----
+sudo docker pull snapcore/snapcraft
+git clone https://github.com/uroesch/snapcraft-docker.git
+cd snapcraft-docker
+sudo docker build -t snapcore/snapcraft:custom .
+----
+
+NOTE: To make the container work for your environment you may need
+ to set the environment variable `BUILD_USER_ID` to your own `UID`
+ before running `docker build`. The default `UID` is `1000`.
+
+[[usage]]
+== Building a Snap with `snapcraft-docker` 
+[source,bash]
+----
+cd mysnap
+snapcraft-docker
+----
+
+NOTE: The above example assumes you have copied the `snapcraft-docker`
+  script into a directory referenced in your `PATH`. 
